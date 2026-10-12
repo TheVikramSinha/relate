@@ -1,20 +1,139 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relate — Markdown ERD designer</title><link rel="stylesheet" href="style.css"></head>
-<body>
-<header><a class="brand" href="./"><span class="logo">r.</span>relate<span class="badge">MARKDOWN → ERD</span></a><div class="header-actions"><span id="saveStatus">Saved on this device</span><button id="help" class="help" aria-label="Markdown help">?</button><button id="import">↑ Import</button><button id="export" class="primary">Export diagram ↗</button></div></header>
-<main><aside id="editorPanel"><div class="editor-heading"><div><span class="eyebrow">YOUR SCHEMA, IN PLAIN TEXT</span><h1>Make connections.</h1></div><p>Write Markdown. Watch your data take shape.</p></div><div class="editor-toolbar"><span><i></i> schema.md</span><button id="example" title="Replace editor with example">Load example</button></div><textarea id="editor" aria-label="Markdown schema editor" spellcheck="false"></textarea><div id="diagnostics" role="status"></div><footer class="editor-footer"><span>↳ Updates as you type</span><button id="syntax">Syntax guide ↗</button></footer></aside>
-<section class="workspace"><div class="canvas-heading"><div><button id="toggleEditor" aria-controls="editorPanel" aria-expanded="true" title="Collapse Markdown editor">◧ Hide editor</button><span class="eyebrow">SCHEMA OVERVIEW</span><h2>Untitled diagram <span class="live">LIVE</span></h2></div><div><button id="undo" title="Undo (Ctrl/Cmd+Z)">↶</button><button id="redo" title="Redo (Ctrl/Cmd+Shift+Z)">↷</button><button id="layout">▦ Auto layout</button><button id="fit">⛶ Fit view</button></div></div><div class="search-toolbar"><label for="schemaSearch">Find in schema</label><input id="schemaSearch" type="search" placeholder="Search tables or columns…" autocomplete="off" aria-controls="searchResults"><span id="searchCount" role="status"></span><button id="clearSearch" aria-label="Clear search" hidden>Clear ×</button><div id="searchResults" hidden></div></div><div id="canvas" tabindex="0" aria-label="ER diagram canvas. Drag background to pan, scroll to zoom, drag tables to reposition."><svg id="diagram" xmlns="http://www.w3.org/2000/svg"><g id="world"></g></svg><div id="empty" hidden>Your next idea starts with an entity.<br><small>Add a Markdown table or open the syntax guide.</small></div><div id="selectionBar" hidden><span id="selectionStatus" role="status"></span><button id="clearSelection" aria-label="Clear relationship highlight">Clear ×</button></div><div class="canvas-caption">Drag to explore <span>·</span> Scroll to zoom <span>·</span> Drag tables to arrange</div><div class="zoom-controls"><button id="zoomOut" aria-label="Zoom out">−</button><button id="zoomReset" title="Reset zoom">100%</button><button id="zoomIn" aria-label="Zoom in">+</button></div><div class="legend"><span class="key">PK</span> Primary key <span class="foreign">FK</span> Foreign key <span class="relation-line"></span> 1 : N</div></div><footer class="workspace-footer"><span id="stats"></span><span style="color: red; font-weight: bold;">
-  All processing stays in your browser. No data is transmitted to external servers or internal servers.
-</span></footer></section></main>
-<input id="file" type="file" accept=".md,.markdown,.txt,.json" hidden><div id="toast" role="status"></div>
-<dialog id="helpModal"><div class="modal-header"><div><span class="eyebrow">A LITTLE MARKDOWN. A WHOLE SCHEMA.</span><h2>Write it. Relate it.</h2></div><button data-close aria-label="Close help">×</button></div><p>Use a Markdown table or entity lists. Foreign keys become connections automatically. Names are case-sensitive.</p><h3>01 / Markdown tables</h3><pre>| Entity | Attribute | Type | Constraints |
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Relate — Markdown ERD designer</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <a class="brand" href="./"><span class="logo">r.</span>relate<span class="badge">MARKDOWN → ERD</span></a>
+            <div class="header-actions">
+                <span id="saveStatus">Saved on this device</span
+                ><button id="help" class="help" aria-label="Markdown help">?</button
+                ><button id="import">↑ Import</button><button id="export" class="primary">Export diagram ↗</button>
+            </div>
+        </header>
+        <main>
+            <aside id="editorPanel">
+                <div class="editor-heading">
+                    <div>
+                        <span class="eyebrow">YOUR SCHEMA, IN PLAIN TEXT</span>
+                        <h1>Make connections.</h1>
+                    </div>
+                    <p>Write Markdown. Watch your data take shape.</p>
+                </div>
+                <div class="editor-toolbar">
+                    <span><i></i> schema.md</span
+                    ><button id="example" title="Replace editor with example">Load example</button>
+                </div>
+                <textarea id="editor" aria-label="Markdown schema editor" spellcheck="false"></textarea>
+                <div id="diagnostics" role="status"></div>
+                <footer class="editor-footer">
+                    <span>↳ Updates as you type</span><button id="syntax">Syntax guide ↗</button>
+                </footer>
+            </aside>
+            <section class="workspace">
+                <div class="canvas-heading">
+                    <div>
+                        <button
+                            id="toggleEditor"
+                            aria-controls="editorPanel"
+                            aria-expanded="true"
+                            title="Collapse Markdown editor"
+                        >
+                            ◧ Hide editor</button
+                        ><span class="eyebrow">SCHEMA OVERVIEW</span>
+                        <h2>Untitled diagram <span class="live">LIVE</span></h2>
+                    </div>
+                    <div>
+                        <button id="undo" title="Undo (Ctrl/Cmd+Z)">↶</button
+                        ><button id="redo" title="Redo (Ctrl/Cmd+Shift+Z)">↷</button
+                        ><button id="layout">▦ Auto layout</button><button id="fit">⛶ Fit view</button>
+                    </div>
+                </div>
+                <div class="search-toolbar">
+                    <label for="schemaSearch">Find in schema</label
+                    ><input
+                        id="schemaSearch"
+                        type="search"
+                        placeholder="Search tables or columns…"
+                        autocomplete="off"
+                        aria-controls="searchResults"
+                    /><span id="searchCount" role="status"></span
+                    ><button id="clearSearch" aria-label="Clear search" hidden>Clear ×</button>
+                    <div id="searchResults" hidden></div>
+                </div>
+                <div
+                    id="canvas"
+                    tabindex="0"
+                    aria-label="ER diagram canvas. Drag background to pan, scroll to zoom, drag tables to reposition."
+                >
+                    <svg id="diagram" xmlns="http://www.w3.org/2000/svg"><g id="world"></g></svg>
+                    <div id="empty" hidden>
+                        Your next idea starts with an entity.<br /><small
+                            >Add a Markdown table or open the syntax guide.</small
+                        >
+                    </div>
+                    <div id="selectionBar" hidden>
+                        <span id="selectionStatus" role="status"></span
+                        ><button id="clearSelection" aria-label="Clear relationship highlight">Clear ×</button>
+                    </div>
+                    <div class="canvas-caption">
+                        Drag to explore <span>·</span> Scroll to zoom <span>·</span> Drag tables to arrange
+                    </div>
+                    <div class="zoom-controls">
+                        <button id="zoomOut" aria-label="Zoom out">−</button
+                        ><button id="zoomReset" title="Reset zoom">100%</button
+                        ><button id="zoomIn" aria-label="Zoom in">+</button>
+                    </div>
+                    <div class="legend">
+                        <span class="key">PK</span> Primary key <span class="foreign">FK</span> Foreign key
+                        <span class="relation-line"></span> 1 : N
+                    </div>
+                </div>
+                <footer class="workspace-footer">
+                    <span id="stats"></span
+                    ><span style="color: red; font-weight: bold">
+                        All processing stays in your browser. No data is transmitted to external servers or internal
+                        servers.
+                    </span>
+                </footer>
+            </section>
+        </main>
+        <input id="file" type="file" accept=".md,.markdown,.txt,.json" hidden />
+        <div id="toast" role="status"></div>
+        <dialog id="helpModal">
+            <div class="modal-header">
+                <div>
+                    <span class="eyebrow">A LITTLE MARKDOWN. A WHOLE SCHEMA.</span>
+                    <h2>Write it. Relate it.</h2>
+                </div>
+                <button data-close aria-label="Close help">×</button>
+            </div>
+            <p>
+                Use a Markdown table or entity lists. Foreign keys become connections automatically. Names are
+                case-sensitive.
+            </p>
+            <h3>01 / Markdown tables</h3>
+            <pre>
+| Entity | Attribute | Type | Constraints |
 | --- | --- | --- | --- |
 | Student | student_id | INT | PK |
 | | student_name | VARCHAR | NOT NULL |
 | Enrollment | enrollment_id | INT | PK |
 | | student_id | INT | FK (Student.student_id) |
 | | course_id | INT | FK (Course.course_id) |
-| Course | course_id | INT | PK |</pre><p>Leave Entity blank to continue the previous table. Bold text and backticks are welcome. Optional Description columns are ignored. Combine constraints, e.g. <code>PK, FK (Student.student_id)</code>.</p><h3>02 / Entity lists</h3><pre>## Student
+| Course | course_id | INT | PK |</pre
+            >
+            <p>
+                Leave Entity blank to continue the previous table. Bold text and backticks are welcome. Optional
+                Description columns are ignored. Combine constraints, e.g. <code>PK, FK (Student.student_id)</code>.
+            </p>
+            <h3>02 / Entity lists</h3>
+            <pre>
+## Student
 - student_id INT PK
 - student_name VARCHAR NOT NULL
 
@@ -24,5 +143,62 @@
 - course_id INT FK -> Course.course_id
 
 ## Course
-- course_id INT PK</pre><p>You can also write <code>* **[Entity] Student**</code> or <code>* **[Junction Table] Enrollment**</code> followed by attribute bullets. Key/link emoji, parenthesized PK, and <code>FK → Student.student_id</code> are supported. Relationship prose is ignored; foreign keys define the connections.</p><h3>03 / Many-to-many relationships</h3><p>Connect Student and Course through Enrollment. Its two foreign keys create two 1:N relationships. Use a composite primary key on the two foreign keys, or add a UNIQUE constraint on the pair in your database to prevent duplicate enrollments. The diagram shows maximum cardinality; nullability and unique foreign keys do not change the 1:N connector.</p><h3>Search</h3><p>Search table or column names using the search bar. Matching is case-insensitive. Click a result to center its table; matching columns are highlighted. Press Enter to jump to the first result, Escape or Clear to reset. Ctrl/Cmd+K focuses search.</p><h3>Canvas & files</h3><p>Drag the background to pan, scroll to zoom around your cursor, or use Fit view. Drag a table to move it. Tables maintain 64 diagram units of separation; movement into another table’s margin is blocked. Import and schema edits automatically separate overlapping tables. Click a relationship to highlight its entire connected component (both directions, including branches and cycles); the selected line is amber, the connected sequence is green, and unrelated tables fade. Clear the highlight with Escape, a background click, or Clear. Relationship lines also support Tab and Enter/Space. Arrow keys pan the focused canvas; +/− zoom, and 0 fits. Undo/redo includes schema and layout changes. Export SVG, 2× PNG, Markdown, text art, or an editable JSON project. Import Markdown or JSON. Changes save automatically in this browser when storage is available.</p><p>Text art is an export format, not an input grammar. Exports include the whole diagram, regardless of zoom.</p><button data-close class="primary">Got it — let's build</button></dialog>
-<dialog id="exportModal"><div class="modal-header"><div><span class="eyebrow">TAKE YOUR IDEAS WITH YOU</span><h2>Export your schema</h2></div><button data-close aria-label="Close export">×</button></div><p>Full diagram. Clean output. Ready for your next step.</p><div class="export-grid"><button data-format="svg"><b>SVG</b><span>Scalable vector diagram</span></button><button data-format="png"><b>PNG</b><span>High-resolution image · 2×</span></button><button data-format="md"><b>Markdown</b><span>Your original schema</span></button><button data-format="txt"><b>Text art</b><span>Tables + relationship map</span></button><button data-format="json"><b>Project</b><span>Schema + table positions</span></button></div></dialog><script src="app.js"></script></body></html>
+- course_id INT PK</pre
+            >
+            <p>
+                You can also write <code>* **[Entity] Student**</code> or
+                <code>* **[Junction Table] Enrollment**</code> followed by attribute bullets. Key/link emoji,
+                parenthesized PK, and <code>FK → Student.student_id</code> are supported. Relationship prose is ignored;
+                foreign keys define the connections.
+            </p>
+            <h3>03 / Many-to-many relationships</h3>
+            <p>
+                Connect Student and Course through Enrollment. Its two foreign keys create two 1:N relationships. Use a
+                composite primary key on the two foreign keys, or add a UNIQUE constraint on the pair in your database
+                to prevent duplicate enrollments. The diagram shows maximum cardinality; nullability and unique foreign
+                keys do not change the 1:N connector.
+            </p>
+            <h3>Search</h3>
+            <p>
+                Search table or column names using the search bar. Matching is case-insensitive. Click a result to
+                center its table; matching columns are highlighted. Press Enter to jump to the first result, Escape or
+                Clear to reset. Ctrl/Cmd+K focuses search.
+            </p>
+            <h3>Canvas & files</h3>
+            <p>
+                Drag the background to pan, scroll to zoom around your cursor, or use Fit view. Drag a table to move it.
+                Tables maintain 64 diagram units of separation; movement into another table’s margin is blocked. Import
+                and schema edits automatically separate overlapping tables. Click a relationship to highlight its entire
+                connected component (both directions, including branches and cycles); the selected line is amber, the
+                connected sequence is green, and unrelated tables fade. Clear the highlight with Escape, a background
+                click, or Clear. Relationship lines also support Tab and Enter/Space. Arrow keys pan the focused canvas;
+                +/− zoom, and 0 fits. Undo/redo includes schema and layout changes. Export SVG, 2× PNG, Markdown, text
+                art, or an editable JSON project. Import Markdown or JSON. Changes save automatically in this browser
+                when storage is available.
+            </p>
+            <p>
+                Text art is an export format, not an input grammar. Exports include the whole diagram, regardless of
+                zoom.
+            </p>
+            <button data-close class="primary">Got it — let's build</button>
+        </dialog>
+        <dialog id="exportModal">
+            <div class="modal-header">
+                <div>
+                    <span class="eyebrow">TAKE YOUR IDEAS WITH YOU</span>
+                    <h2>Export your schema</h2>
+                </div>
+                <button data-close aria-label="Close export">×</button>
+            </div>
+            <p>Full diagram. Clean output. Ready for your next step.</p>
+            <div class="export-grid">
+                <button data-format="svg"><b>SVG</b><span>Scalable vector diagram</span></button
+                ><button data-format="png"><b>PNG</b><span>High-resolution image · 2×</span></button
+                ><button data-format="md"><b>Markdown</b><span>Your original schema</span></button
+                ><button data-format="txt"><b>Text art</b><span>Tables + relationship map</span></button
+                ><button data-format="json"><b>Project</b><span>Schema + table positions</span></button>
+            </div>
+        </dialog>
+        <script src="app.js"></script>
+    </body>
+</html>
