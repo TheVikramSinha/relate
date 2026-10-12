@@ -2,17 +2,20 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Relate — Markdown ERD designer</title>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <header>
-            <a class="brand" href="./"><span class="logo">r.</span>relate<span class="badge">MARKDOWN → ERD</span></a>
+            <a class="brand" href="./">
+                <span class="logo">r.</span>relate<span class="badge">MARKDOWN → ERD</span>
+            </a>
             <div class="header-actions">
-                <span id="saveStatus">Saved on this device</span
-                ><button id="help" class="help" aria-label="Markdown help">?</button
-                ><button id="import">↑ Import</button><button id="export" class="primary">Export diagram ↗</button>
+                <span id="saveStatus">Saved on this device</span>
+                <button id="help" class="help" aria-label="Markdown help">?</button>
+                <button id="import">↑ Import</button>
+                <button id="export" class="primary">Export diagram ↗</button>
             </div>
         </header>
         <main>
@@ -25,13 +28,14 @@
                     <p>Write Markdown. Watch your data take shape.</p>
                 </div>
                 <div class="editor-toolbar">
-                    <span><i></i> schema.md</span
-                    ><button id="example" title="Replace editor with example">Load example</button>
+                    <span><i></i> schema.md</span>
+                    <button id="example" title="Replace editor with example">Load example</button>
                 </div>
                 <textarea id="editor" aria-label="Markdown schema editor" spellcheck="false"></textarea>
                 <div id="diagnostics" role="status"></div>
                 <footer class="editor-footer">
-                    <span>↳ Updates as you type</span><button id="syntax">Syntax guide ↗</button>
+                    <span>↳ Updates as you type</span>
+                    <button id="syntax">Syntax guide ↗</button>
                 </footer>
             </aside>
             <section class="workspace">
@@ -43,26 +47,29 @@
                             aria-expanded="true"
                             title="Collapse Markdown editor"
                         >
-                            ◧ Hide editor</button
-                        ><span class="eyebrow">SCHEMA OVERVIEW</span>
+                            ◧ Hide editor
+                        </button>
+                        <span class="eyebrow">SCHEMA OVERVIEW</span>
                         <h2>Untitled diagram <span class="live">LIVE</span></h2>
                     </div>
                     <div>
-                        <button id="undo" title="Undo (Ctrl/Cmd+Z)">↶</button
-                        ><button id="redo" title="Redo (Ctrl/Cmd+Shift+Z)">↷</button
-                        ><button id="layout">▦ Auto layout</button><button id="fit">⛶ Fit view</button>
+                        <button id="undo" title="Undo (Ctrl/Cmd+Z)">↶</button>
+                        <button id="redo" title="Redo (Ctrl/Cmd+Shift+Z)">↷</button>
+                        <button id="layout">▦ Auto layout</button>
+                        <button id="fit">⛶ Fit view</button>
                     </div>
                 </div>
                 <div class="search-toolbar">
-                    <label for="schemaSearch">Find in schema</label
-                    ><input
+                    <label for="schemaSearch">Find in schema</label>
+                    <input
                         id="schemaSearch"
                         type="search"
                         placeholder="Search tables or columns…"
                         autocomplete="off"
                         aria-controls="searchResults"
-                    /><span id="searchCount" role="status"></span
-                    ><button id="clearSearch" aria-label="Clear search" hidden>Clear ×</button>
+                    />
+                    <span id="searchCount" role="status"></span>
+                    <button id="clearSearch" aria-label="Clear search" hidden>Clear ×</button>
                     <div id="searchResults" hidden></div>
                 </div>
                 <div
@@ -70,23 +77,24 @@
                     tabindex="0"
                     aria-label="ER diagram canvas. Drag background to pan, scroll to zoom, drag tables to reposition."
                 >
-                    <svg id="diagram" xmlns="http://www.w3.org/2000/svg"><g id="world"></g></svg>
+                    <svg id="diagram" xmlns="http://www.w3.org/2000/svg">
+                        <g id="world"></g>
+                    </svg>
                     <div id="empty" hidden>
-                        Your next idea starts with an entity.<br /><small
-                            >Add a Markdown table or open the syntax guide.</small
-                        >
+                        Your next idea starts with an entity.<br />
+                        <small>Add a Markdown table or open the syntax guide.</small>
                     </div>
                     <div id="selectionBar" hidden>
-                        <span id="selectionStatus" role="status"></span
-                        ><button id="clearSelection" aria-label="Clear relationship highlight">Clear ×</button>
+                        <span id="selectionStatus" role="status"></span>
+                        <button id="clearSelection" aria-label="Clear relationship highlight">Clear ×</button>
                     </div>
                     <div class="canvas-caption">
                         Drag to explore <span>·</span> Scroll to zoom <span>·</span> Drag tables to arrange
                     </div>
                     <div class="zoom-controls">
-                        <button id="zoomOut" aria-label="Zoom out">−</button
-                        ><button id="zoomReset" title="Reset zoom">100%</button
-                        ><button id="zoomIn" aria-label="Zoom in">+</button>
+                        <button id="zoomOut" aria-label="Zoom out">−</button>
+                        <button id="zoomReset" title="Reset zoom">100%</button>
+                        <button id="zoomIn" aria-label="Zoom in">+</button>
                     </div>
                     <div class="legend">
                         <span class="key">PK</span> Primary key <span class="foreign">FK</span> Foreign key
@@ -94,10 +102,9 @@
                     </div>
                 </div>
                 <footer class="workspace-footer">
-                    <span id="stats"></span
-                    ><span style="color: red; font-weight: bold">
-                        All processing stays in your browser. No data is transmitted to external servers or internal
-                        servers.
+                    <span id="stats"></span>
+                    <span style="color: red; font-weight: bold">
+                        All processing stays in your browser. No data is transmitted to external servers or internal servers.
                     </span>
                 </footer>
             </section>
@@ -125,8 +132,7 @@
 | Enrollment | enrollment_id | INT | PK |
 | | student_id | INT | FK (Student.student_id) |
 | | course_id | INT | FK (Course.course_id) |
-| Course | course_id | INT | PK |</pre
-            >
+| Course | course_id | INT | PK |</pre>
             <p>
                 Leave Entity blank to continue the previous table. Bold text and backticks are welcome. Optional
                 Description columns are ignored. Combine constraints, e.g. <code>PK, FK (Student.student_id)</code>.
@@ -143,8 +149,7 @@
 - course_id INT FK -> Course.course_id
 
 ## Course
-- course_id INT PK</pre
-            >
+- course_id INT PK</pre>
             <p>
                 You can also write <code>* **[Entity] Student**</code> or
                 <code>* **[Junction Table] Enrollment**</code> followed by attribute bullets. Key/link emoji,
@@ -192,11 +197,11 @@
             </div>
             <p>Full diagram. Clean output. Ready for your next step.</p>
             <div class="export-grid">
-                <button data-format="svg"><b>SVG</b><span>Scalable vector diagram</span></button
-                ><button data-format="png"><b>PNG</b><span>High-resolution image · 2×</span></button
-                ><button data-format="md"><b>Markdown</b><span>Your original schema</span></button
-                ><button data-format="txt"><b>Text art</b><span>Tables + relationship map</span></button
-                ><button data-format="json"><b>Project</b><span>Schema + table positions</span></button>
+                <button data-format="svg"><b>SVG</b><span>Scalable vector diagram</span></button>
+                <button data-format="png"><b>PNG</b><span>High-resolution image · 2×</span></button>
+                <button data-format="md"><b>Markdown</b><span>Your original schema</span></button>
+                <button data-format="txt"><b>Text art</b><span>Tables + relationship map</span></button>
+                <button data-format="json"><b>Project</b><span>Schema + table positions</span></button>
             </div>
         </dialog>
         <script src="app.js"></script>
