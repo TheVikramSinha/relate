@@ -2,10 +2,6 @@
 
 A dependency-free relational schema designer built with HTML, CSS, and vanilla JavaScript. No build step, account, backend, or network requests are required.
 
-## Run
-
-Open `index.html` in a modern browser. Alternatively, run `python3 -m http.server 8080` in this directory and visit http://localhost:8080.
-
 ## Write your schema
 
 Click the **?** button or **Syntax guide** for the in-app guide.
